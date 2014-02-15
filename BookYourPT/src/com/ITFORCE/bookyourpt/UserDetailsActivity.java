@@ -35,7 +35,7 @@ public class UserDetailsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.userdetails);
-
+ 
 		userProfilePictureView = (ProfilePictureView) findViewById(R.id.userProfilePicture);
 		userNameView = (TextView) findViewById(R.id.userName);
 		userLocationView = (TextView) findViewById(R.id.userLocation);
