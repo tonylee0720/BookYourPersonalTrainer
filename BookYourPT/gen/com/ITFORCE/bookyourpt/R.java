@@ -225,7 +225,7 @@ containing a value of this type.
         public static final int btn_FBLogin=0x7f040008;
         public static final int btn_Login=0x7f040009;
         public static final int btn_MemReg=0x7f04000a;
-        public static final int button1=0x7f040007;
+        public static final int btn_reg=0x7f040007;
         public static final int com_facebook_login_activity_progress_bar=0x7f040011;
         public static final int com_facebook_picker_activity_circle=0x7f040010;
         public static final int com_facebook_picker_checkbox=0x7f040013;

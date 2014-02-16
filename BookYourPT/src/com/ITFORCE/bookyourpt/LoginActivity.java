@@ -23,7 +23,6 @@ public class LoginActivity extends BaseActivity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-			
 		localInit();
 		functionInit();
 
@@ -38,12 +37,29 @@ public class LoginActivity extends BaseActivity  {
 	private void localInit(){
 		fbButton = (com.facebook.widget.LoginButton) findViewById(R.id.btn_FBLogin);
 		loginButton = (Button)findViewById(R.id.btn_Login);
+		regButton = (Button)findViewById(R.id.btn_MemReg);
 	}
 	private void functionInit(){
 		fbButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				onLoginButtonClicked();
+			}
+		});
+		
+		regButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(LoginActivity.this, RegActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		loginButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
