@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/EditText01"
+        android:id="@+id/txt_profile_memid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -19,35 +19,26 @@
     </EditText>
 
     <EditText
-        android:id="@+id/txt_profile_memid"
+        android:id="@+id/txt_profile_fname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/EditText01"
-        android:ems="10"
-        android:hint="Real Name" />
-
-    <RadioButton
-        android:id="@+id/radioButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/txt_profile_memid"
-        android:layout_marginTop="22dp"
-        android:text="Male" />
+        android:ems="10"
+        android:hint="First Name" />
 
     <RadioButton
-        android:id="@+id/RadioButton01"
+        android:id="@+id/rad_profile_female"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/radioButton1"
-        android:layout_alignBottom="@+id/radioButton1"
+        android:layout_alignBaseline="@+id/rad_profile_male"
+        android:layout_alignBottom="@+id/rad_profile_male"
         android:layout_alignParentRight="true"
         android:text="Female" />
 
     <Button
-        android:id="@+id/btn_reg"
+        android:id="@+id/btn_verify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -57,5 +48,34 @@
         android:text="Verify"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/rad_profile_male"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txt_profile_hkid"
+        android:layout_marginTop="19dp"
+        android:text="Male" />
+
+    <EditText
+        android:id="@+id/txt_profile_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_profile_fname"
+        android:ems="10"
+        android:hint="Last Name" />
+
+    <EditText
+        android:id="@+id/txt_profile_hkid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_profile_lname"
+        android:ems="10"
+        android:hint="Hong Kong ID/ Passport" />
     
 </RelativeLayout>
