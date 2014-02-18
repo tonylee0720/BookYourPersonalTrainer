@@ -7,27 +7,31 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Toast;
 
+import com.ITFORCE.bookyourpt.core.User;
+import com.ITFORCE.bookyourpt.core.User.UserLoginListener;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements UserLoginListener {
 	com.facebook.widget.LoginButton fbButton;
-	Button loginButton, regButton;
+	Button loginButton, regButton, loginBtn;
 	LinearLayout lllogin, llbtn;
 	Animation fadeIn, fadeOut, tranDown, tranUp;
 	RelativeLayout mainRl;
+	EditText loginUserName, loginPassWord;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +49,20 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void localInit() {
+		// btn
 		fbButton = (com.facebook.widget.LoginButton) findViewById(R.id.btn_FBLogin);
 		loginButton = (Button) findViewById(R.id.btn_Login);
 		regButton = (Button) findViewById(R.id.btn_MemReg);
 		llbtn = (LinearLayout) findViewById(R.id.login_btnll);
+		// txt
 		lllogin = (LinearLayout) findViewById(R.id.login_txtll);
+		loginBtn = (Button) findViewById(R.id.login_btn);
+		loginUserName = (EditText) findViewById(R.id.login_uname);
+		loginPassWord= (EditText) findViewById(R.id.login_pw);
 		fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-		fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
-		// fadeIn.setFillAfter(true);
-		// fadeOut.setFillAfter(true);
-		// tranUp.setFillAfter(true);
-		// tranDown.setFillAfter(true);
 		mainRl = (RelativeLayout) findViewById(R.id.login_main_rl);
+		
+		fadeIn.setFillAfter(true);
 	}
 
 	private void functionInit() {
@@ -82,6 +88,13 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
 
+		loginBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showProgressDialog();
+				User.logIn(loginUserName.getText().toString(), loginPassWord.getText().toString(), LoginActivity.this);
+			}
+		});
 	}
 
 	private void onLoginButtonClicked() {
@@ -111,17 +124,28 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void animMoveIn() {
-		ObjectAnimator mover = ObjectAnimator.ofFloat(llbtn, "translationY", 0, mainRl.getHeight()*0.2f);
+		ObjectAnimator mover = ObjectAnimator.ofFloat(llbtn, "translationY", 0,
+				mainRl.getHeight() * 0.2f);
 		mover.start();
-		tranDown.setDuration(1000);
-		lllogin.startAnimation(fadeIn);
 		lllogin.setVisibility(View.VISIBLE);
+		lllogin.startAnimation(fadeIn);
 	}
 
 	private void animMoveBack() {
 		lllogin.setVisibility(View.GONE);
 		lllogin.startAnimation(fadeOut);
-		llbtn.startAnimation(tranUp);
+	}
+
+	@Override
+	public void signInSuccess(ParseUser user) {
+		hideProgressDialog();
+		Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void signInError(String error) {
+		hideProgressDialog();
+		Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
 	}
 
 }

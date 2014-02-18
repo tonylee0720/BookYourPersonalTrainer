@@ -5,24 +5,33 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.KeyEvent;
 
-
+import com.ITFORCE.bookyourpt.core.User;
+import com.ITFORCE.bookyourpt.core.User.UserInitializationListener;
 import com.androidquery.AQuery;
+import com.facebook.LoginActivity;
+import com.parse.ParseUser;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements UserInitializationListener {
 	private ProgressDialog mDialog;
 	public AQuery aq = new AQuery(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-		.detectNetwork() // or .detectAll() for all detectable problems
-		.permitNetwork() // permit Network access
-		.build());
+		User.initialize(this);
+		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectNetwork() // or
+																							// .detectAll()
+																							// for
+																							// all
+																							// detectable
+																							// problems
+				.permitNetwork() // permit Network access
+				.build());
 	}
 
 	protected void showProgressDialog() {
@@ -35,8 +44,7 @@ public class BaseActivity extends Activity {
 		mDialog.show();
 		mDialog.setOnKeyListener(new Dialog.OnKeyListener() {
 			@Override
-			public boolean onKey(DialogInterface dialog, int keyCode,
-					KeyEvent event) {
+			public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
 				if (keyCode == KeyEvent.KEYCODE_BACK) {
 					onStop();
 					dialog.dismiss();
@@ -51,17 +59,37 @@ public class BaseActivity extends Activity {
 			mDialog.dismiss();
 		}
 	}
-	
-	public void popDialog(String message,String title) {
+
+	public void popDialog(String message, String title) {
 		new AlertDialog.Builder(this)
 				.setTitle(title)
 				.setMessage(message)
 				.setPositiveButton(this.getText(R.string.okay),
 						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								
+							public void onClick(DialogInterface dialog, int which) {
+
 							}
 						}).show();
+	}
+
+	@Override
+	public void login() {
+		ParseUser user = ParseUser.getCurrentUser();
+		if (user != null) {
+			Intent intent = new Intent(this, ProfActivity.class);
+			startActivity(intent);
+		}
+	}
+
+	@Override
+	public void verify() {
+		Intent intent = new Intent(this, ProfActivity.class);
+		startActivity(intent);
+	}
+
+	@Override
+	public void prompt() {
+		Intent intent = new Intent(this, LoginActivity.class);
+		startActivity(intent);
 	}
 }

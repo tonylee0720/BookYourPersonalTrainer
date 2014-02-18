@@ -64,7 +64,7 @@ public class ProfActivity extends BaseActivity {
 					@Override
 					public void done(ParseException e) {
 						if (e == null) {
-							verify();
+							outSourceVerify();
 						} else {
 							Log.v("log", e.getMessage());
 						}
@@ -74,7 +74,7 @@ public class ProfActivity extends BaseActivity {
 		});
 	}
 
-	private void verify() {
+	private void outSourceVerify() {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("GymMember");
 		query.whereEqualTo("member_id", memid);
 		query.countInBackground(new CountCallback() {

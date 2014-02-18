@@ -1,13 +1,18 @@
 package com.ITFORCE.bookyourpt.core;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+
+import com.ITFORCE.bookyourpt.BaseActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class User {
-
 	public interface UserInitializationListener {
 		public void login();
+
+		public void verify();
 
 		public void prompt();
 	}
@@ -21,11 +26,14 @@ public class User {
 	public static final void initialize(UserInitializationListener listener) {
 		final ParseUser user = ParseUser.getCurrentUser();
 		if (user != null) { // logged in
-			if (user.getBoolean("phoneVerified")) { // account verified
+//			new BaseActivity().showProgressDialog();
+			if (user.getBoolean("verified")) { // account verified
 				listener.login();
 			} else { // needs to login
-				listener.prompt();
+				listener.verify();
 			}
+		} else { // needs to login
+			listener.prompt();
 		}
 	}
 
@@ -37,8 +45,7 @@ public class User {
 		ParseUser.logOut();
 	}
 
-	public static void logIn(String email, String pass,
-			final UserLoginListener listener) {
+	public static void logIn(String email, String pass, final UserLoginListener listener) {
 		ParseUser.logInInBackground(email, pass, new LogInCallback() {
 			@Override
 			public void done(ParseUser user, ParseException e) {
@@ -51,7 +58,7 @@ public class User {
 		});
 	}
 
+
 	public static void resetPassword(String email) {
-		// TODO: call cloud code function on the background
 	}
 }
