@@ -16,14 +16,13 @@ import com.androidquery.AQuery;
 import com.facebook.LoginActivity;
 import com.parse.ParseUser;
 
-public class BaseActivity extends Activity implements UserInitializationListener {
+public class BaseActivity extends Activity  {
 	private ProgressDialog mDialog;
 	public AQuery aq = new AQuery(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		User.initialize(this);
 		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectNetwork() // or
 																							// .detectAll()
 																							// for
@@ -72,24 +71,5 @@ public class BaseActivity extends Activity implements UserInitializationListener
 						}).show();
 	}
 
-	@Override
-	public void login() {
-		ParseUser user = ParseUser.getCurrentUser();
-		if (user != null) {
-			Intent intent = new Intent(this, ProfActivity.class);
-			startActivity(intent);
-		}
-	}
 
-	@Override
-	public void verify() {
-		Intent intent = new Intent(this, ProfActivity.class);
-		startActivity(intent);
-	}
-
-	@Override
-	public void prompt() {
-		Intent intent = new Intent(this, LoginActivity.class);
-		startActivity(intent);
-	}
 }

@@ -1,9 +1,5 @@
 package com.ITFORCE.bookyourpt.core;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-
-import com.ITFORCE.bookyourpt.BaseActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -11,15 +7,12 @@ import com.parse.ParseUser;
 public class User {
 	public interface UserInitializationListener {
 		public void login();
-
 		public void verify();
-
 		public void prompt();
 	}
 
 	public interface UserLoginListener {
 		public void signInSuccess(ParseUser user);
-
 		public void signInError(String error);
 	}
 

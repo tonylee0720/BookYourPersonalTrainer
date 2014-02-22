@@ -139,6 +139,9 @@ public class LoginActivity extends BaseActivity implements UserLoginListener {
 	@Override
 	public void signInSuccess(ParseUser user) {
 		hideProgressDialog();
+		Intent i = new Intent(LoginActivity.this, MainActivity.class);
+		startActivity(i);
+		finish();
 		Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
 	}
 
