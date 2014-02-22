@@ -18,25 +18,6 @@
         <requestFocus />
     </EditText>
 
-    <EditText
-        android:id="@+id/txt_profile_fname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/txt_profile_memid"
-        android:ems="10"
-        android:hint="First Name" />
-
-    <RadioButton
-        android:id="@+id/rad_profile_female"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/rad_profile_male"
-        android:layout_alignBottom="@+id/rad_profile_male"
-        android:layout_alignParentRight="true"
-        android:text="Female" />
-
     <Button
         android:id="@+id/btn_verify"
         android:layout_width="wrap_content"
@@ -48,15 +29,6 @@
         android:text="Verify"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
-
-    <RadioButton
-        android:id="@+id/rad_profile_male"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txt_profile_hkid"
-        android:layout_marginTop="19dp"
-        android:text="Male" />
 
     <EditText
         android:id="@+id/txt_profile_lname"
@@ -77,5 +49,47 @@
         android:layout_below="@+id/txt_profile_lname"
         android:ems="10"
         android:hint="Hong Kong ID/ Passport" />
-    
+
+    <RadioGroup
+        android:id="@+id/rad_profile_grp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_profile_hkid"
+        android:layout_marginTop="10dp" >
+
+        <RadioButton
+            android:id="@+id/rad_profile_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M" />
+
+        <RadioButton
+            android:id="@+id/rad_profile_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/txt_profile_nname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_profile_memid"
+        android:ems="10"
+        android:hint="NickName" />
+
+    <EditText
+        android:id="@+id/txt_profile_fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_profile_nname"
+        android:ems="10"
+        android:hint="First Name" />
+
 </RelativeLayout>
