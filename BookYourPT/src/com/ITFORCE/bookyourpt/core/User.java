@@ -7,19 +7,22 @@ import com.parse.ParseUser;
 public class User {
 	public interface UserInitializationListener {
 		public void login();
+
 		public void verify();
+
 		public void prompt();
 	}
 
 	public interface UserLoginListener {
 		public void signInSuccess(ParseUser user);
+
 		public void signInError(String error);
 	}
 
 	public static final void initialize(UserInitializationListener listener) {
-		final ParseUser user = ParseUser.getCurrentUser();
+		ParseUser user = ParseUser.getCurrentUser();
 		if (user != null) { // logged in
-//			new BaseActivity().showProgressDialog();
+		// new BaseActivity().showProgressDialog();
 			if (user.getBoolean("verified")) { // account verified
 				listener.login();
 			} else { // needs to login
@@ -50,7 +53,6 @@ public class User {
 			}
 		});
 	}
-
 
 	public static void resetPassword(String email) {
 	}

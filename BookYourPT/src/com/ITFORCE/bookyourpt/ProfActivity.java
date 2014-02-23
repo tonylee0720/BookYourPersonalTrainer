@@ -185,7 +185,7 @@ public class ProfActivity extends BaseActivity {
 	}
 
 	private void isTrainerVerified() {
-		curUser.put("staffId", memId);
+		curUser.put("staffId", memid);
 		curUser.put("nickName", nname);
 		curUser.put("fName", fname);
 		curUser.put("lName", lname);

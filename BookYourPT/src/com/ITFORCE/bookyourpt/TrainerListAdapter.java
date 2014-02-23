@@ -51,7 +51,7 @@ public class TrainerListAdapter extends BaseAdapter {
 
 		// Setting all values in listview
 		trainerName.setText(curObj.getString("nickName"));
-		trainerlName.setText(curObj.getString("lname"));
+		trainerlName.setText(curObj.getString("lName"));
 		return view;
 	}
 }
