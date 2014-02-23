@@ -18,7 +18,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <com.facebook.widget.LoginButton
             android:id="@+id/btn_FBLogin"
@@ -59,7 +59,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:visibility="visible" >
+        android:visibility="gone" >
 
         <EditText
             android:id="@+id/login_uname"
