@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.ITFORCE.bookyourpt.core.Initialize;
 import com.ITFORCE.bookyourpt.core.User;
 import com.ITFORCE.bookyourpt.core.User.UserLoginListener;
 import com.parse.LogInCallback;
@@ -58,10 +59,10 @@ public class LoginActivity extends BaseActivity implements UserLoginListener {
 		lllogin = (LinearLayout) findViewById(R.id.login_txtll);
 		loginBtn = (Button) findViewById(R.id.login_btn);
 		loginUserName = (EditText) findViewById(R.id.login_uname);
-		loginPassWord= (EditText) findViewById(R.id.login_pw);
+		loginPassWord = (EditText) findViewById(R.id.login_pw);
 		fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 		mainRl = (RelativeLayout) findViewById(R.id.login_main_rl);
-		
+
 		fadeIn.setFillAfter(true);
 	}
 
@@ -92,7 +93,8 @@ public class LoginActivity extends BaseActivity implements UserLoginListener {
 			@Override
 			public void onClick(View v) {
 				showProgressDialog();
-				User.logIn(loginUserName.getText().toString(), loginPassWord.getText().toString(), LoginActivity.this);
+				User.logIn(loginUserName.getText().toString(), loginPassWord.getText().toString(),
+						LoginActivity.this);
 			}
 		});
 	}
@@ -139,9 +141,17 @@ public class LoginActivity extends BaseActivity implements UserLoginListener {
 	@Override
 	public void signInSuccess(ParseUser user) {
 		hideProgressDialog();
-		Intent i = new Intent(LoginActivity.this, MainActivity.class);
-		startActivity(i);
-		finish();
+		if (user.getBoolean("verified")) {
+			Intent intent = new Intent(this, MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
+		} else {
+			Intent intent = new Intent(this, ProfActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
+		}
 		Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
 	}
 

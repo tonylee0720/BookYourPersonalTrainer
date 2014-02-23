@@ -10,16 +10,18 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ITFORCE.bookyourpt.core.User;
-import com.ITFORCE.bookyourpt.core.User.UserInitializationListener;
 import com.androidquery.AQuery;
 import com.facebook.LoginActivity;
 import com.parse.ParseUser;
 
 public class BaseActivity extends Activity {
 	private ProgressDialog mDialog;
+	private MenuInflater inflater;
+	private MenuItem menuLogout;
 	public AQuery aq = new AQuery(this);
 
 	@Override
@@ -75,7 +77,16 @@ public class BaseActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
+		inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		menuLogout = menu.findItem(R.id.menu_logout);
+		super.onCreateOptionsMenu(menu);
+		if (ParseUser.getCurrentUser() == null) {
+			menuLogout.setVisible(false);
+		}else{
+			menuLogout.setVisible(true);
+		}
+		// menu Handle
 		return true;
 	}
 
@@ -83,10 +94,8 @@ public class BaseActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_logout:
+			startActivity(new Intent(getApplicationContext(), com.ITFORCE.bookyourpt.LoginActivity.class));
 			User.logOut();
-			Intent i = new Intent(BaseActivity.this, LoginActivity.class);
-			startActivity(i);
-			finish();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
