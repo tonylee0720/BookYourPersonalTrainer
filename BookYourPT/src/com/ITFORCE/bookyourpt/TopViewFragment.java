@@ -29,6 +29,6 @@ public class TopViewFragment extends Fragment {
 
 	private void functionInit() {
 		webView.setWebViewClient(new WebViewClient());
-		webView.loadUrl("http://google.com");
+		webView.loadUrl("http://www.royaltext.com/wp-content/uploads/2013/10/fitness.jpg");
 	}
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/schedule_BookDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Pick a date"
+            android:inputType="none"
+            android:textAlignment="center" >
+
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/schedule_BooksTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Start time"
+                android:textAlignment="center" />
+
+            
+            <EditText
+                android:id="@+id/schedule_BookeTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Start time"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/schedule_trainer_btn_book"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#00793D"
+        android:text="Book"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/schuedule_listview"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/schedule_trainer_btn_book"
+        android:layout_marginTop="5dp"
+        android:background="#434343" >
+
+    </ListView>
+
+</RelativeLayout>

@@ -38,14 +38,26 @@ public class TrainerListAdapter extends BaseAdapter {
 		return position;
 	}
 
+	public String getParseObjectId(int position) {
+		return data.get(position).getObjectId();
+	}
+
+	public String getNickName(int position) {
+		return data.get(position).getString("nickName");
+	}
+	
+	public String getLName(int position) {
+		return data.get(position).getString("lName");
+	}
+
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
 		if (convertView == null)
 			view = inflater.inflate(R.layout.row_trainerlist, null);
 
-		TextView trainerName = (TextView) view.findViewById(R.id.row_trainer_name); 
+		TextView trainerName = (TextView) view.findViewById(R.id.row_trainer_name);
 		TextView trainerlName = (TextView) view.findViewById(R.id.row_trainer_lname);
-		ImageView trainerIcon = (ImageView) view.findViewById(R.id.row_trainer_icon); 
+		ImageView trainerIcon = (ImageView) view.findViewById(R.id.row_trainer_icon);
 
 		ParseUser curObj = data.get(position);
 
@@ -54,4 +66,5 @@ public class TrainerListAdapter extends BaseAdapter {
 		trainerlName.setText(curObj.getString("lName"));
 		return view;
 	}
+
 }
